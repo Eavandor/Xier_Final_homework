@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.memorybooster">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MemoryBooster"
+        android:usesCleartextTraffic="true">
+
+        <activity android:name="FunctionsInM.ChoosingNoise"></activity>
+
+        <service
+            android:name="FunctionsInM.MyService"
+            android:enabled="true"
+            android:exported="true" />
+
+
+        <activity android:name="FunctionsInM.ChooseImg"
+            />
+        <activity android:name="Login.Labs">
+
+        </activity>
+        <activity android:name="ReviewItems.TryWordBack" />
+        <activity android:name="WordItems.DisplarAWordCard" />
+        <activity android:name="ReviewCards.ShowTextCard" />
+        <activity android:name="ReviewCards.CreateReviewCard" />
+        <activity android:name=".ModifyPlanActivity2" />
+        <activity android:name="WordItems.WordActivity" />
+        <activity android:name=".SplashActivity"
+           >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".Tyr4"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".Try3" />
+        <activity android:name=".Try2" />
+        <activity android:name=".Me" />
+        <activity android:name="Login.CreateAccount" />
+        <activity android:name="Login.Login2">
+
+        </activity>
+        <activity android:name=".MainActivity" />
+    </application>
+
+</manifest>

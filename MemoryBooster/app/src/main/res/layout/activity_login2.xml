@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingHorizontal="30dp"
+    tools:context="Login.Login2">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="280dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@drawable/liniarlayout_in_login"
+
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:id="@+id/ed2"
+
+            android:layout_width="320dp"
+            android:layout_height="59dp"
+            android:background="@drawable/liniarlayout_in_login"
+            android:hint="电子邮箱："
+
+            android:paddingLeft="17dp"></EditText>
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="#838ea0"
+    ></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <EditText
+            android:id="@+id/ed5"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="31dp"
+            android:layout_height="59dp"
+            android:background="@drawable/liniarlayout_in_login"
+            android:inputType="numberPassword"
+            android:hint="密码："
+            android:maxLength="12"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"></EditText>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#838ea0"
+        ></LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="21dp"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="left"
+        >
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb132"
+
+            ></CheckBox>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保持登陆"
+            android:textColor="@color/white"
+            ></TextView>
+    </LinearLayout>
+</LinearLayout>
+
+
+    <Button
+        android:id="@+id/cra22b"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/crbg2"
+        android:text="登录"
+        android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/gotoca"
+android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:text="注册账号"
+            android:textColor="#a4b5d3"></TextView>
+
+
+
+
+
+</LinearLayout>

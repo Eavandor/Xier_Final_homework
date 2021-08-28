@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="WordItems.DisplarAWordCard">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/headword"
+    android:text="intelligence"
+    android:textColor="@color/black"
+    android:layout_marginTop="30dp"
+    android:layout_marginHorizontal="30dp"
+    android:textStyle="bold"
+    android:textSize="35dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/yinbiao"
+            android:text="/in'telidgens/"
+            android:textColor="@color/black"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="30dp"
+            android:textSize="20dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/meanings"
+            android:text="n. 智力；情报；理解力"
+            android:textColor="@color/black"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="30dp"
+            android:textSize="20dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="例句"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="30dp"
+            android:textStyle="bold"
+            android:textSize="20dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instance"
+            android:text="Stephem Hawking was a man of great intelligence\n史蒂芬霍金是一个高智商的人"
+            android:textColor="@color/black"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="30dp"
+            android:textStyle="bold"
+            android:textSize="20dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="常用词组"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="30dp"
+            android:textStyle="bold"
+            android:textSize="20dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/phrase"
+            android:textColor="@color/black"
+            android:text="high intelligence  高智商"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="30dp"
+            android:textStyle="bold"
+            android:textSize="20dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="同根词"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="30dp"
+            android:textStyle="bold"
+            android:textSize="20dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sameprefix"
+            android:textColor="@color/black"
+            android:text="intteligent"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="30dp"
+            android:textStyle="bold"
+            android:textSize="20dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="英文释义"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="30dp"
+            android:textStyle="bold"
+            android:textSize="20dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/enmean"
+            android:textColor="@color/black"
+            android:text="the ability to learn,understand and think in a logical way about things;the ability to do this is well."
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="30dp"
+            android:textStyle="bold"
+            android:textSize="20dp"></TextView>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/np"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="30dp"
+            android:text="下一个"
+            android:background="@drawable/purplebutton"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            ></Button>
+    </LinearLayout>
+</ScrollView>
+
+
+
+</LinearLayout>

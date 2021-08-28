@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="left"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/crbg"
+    android:padding="10dp"
+    android:layout_margin="10dp">
+
+
+
+    <TextView
+        android:id="@+id/wordcardtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="创建时间："
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="11dp" />
+    <TextView
+        android:id="@+id/word1232"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="abandon v."
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="......"
+        android:id="@+id/afds"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/needpoint"
+        android:text="你需要复习第1个记忆点"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="10dp" />
+</LinearLayout>

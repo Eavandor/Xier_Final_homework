@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="#cfdde7"
+    tools:context="ReviewCards.CreateReviewCard">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+android:id="@+id/cardName"
+        android:gravity="start"
+        android:padding="10dp"
+android:layout_marginHorizontal="40dp"
+        android:hint="给复习卡片取个名字吧~"
+        android:background="@drawable/blockbg"
+         android:layout_height="wrap_content"></EditText>
+<EditText
+    android:layout_width="match_parent"
+    android:minHeight="500dp"
+     android:layout_height="500dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginHorizontal="40dp"
+android:id="@+id/cardContent"
+    android:inputType="textMultiLine"
+    android:gravity="start"
+    android:padding="10dp"
+
+    android:hint="请在此处键入复习卡内容"
+    android:background="@drawable/blockbg"
+    ></EditText>
+<Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_marginHorizontal="40dp"
+    android:background="@drawable/crbg"
+    android:id="@+id/submitTextContent"
+    android:text="提交"
+    android:textColor="@color/white"
+    android:textSize="20dp"
+    ></Button>
+</LinearLayout>

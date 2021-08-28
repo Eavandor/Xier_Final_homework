@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="40dp"
+    android:paddingLeft="40dp"
+    android:background="@drawable/mebg"
+    tools:context=".Me">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="25dp"
+        android:id="@+id/head"
+        android:src="@drawable/head"
+        ></ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/head"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:id="@+id/usernameinme"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        android:text="用户名"
+
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/usernameinme"
+        android:textSize="10dp"
+        android:layout_marginLeft="25dp"
+        android:textColor="@color/black"
+        android:id="@+id/usrralativemsg"
+        ></TextView>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/usrralativemsg"
+    android:id="@+id/kjhkjsda"
+    android:layout_marginBottom="100dp"
+    android:scrollbars="none"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/kjhkjsda"
+            android:textStyle="bold"
+            android:text="↓下拉还有哦↓"></TextView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recinm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/blockbg"></androidx.recyclerview.widget.RecyclerView>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/kjhkjsda"
+            android:text="↑上拉还有哦↑"></TextView>
+
+
+    </LinearLayout>
+
+
+</ScrollView>
+
+
+
+    <LinearLayout
+
+
+        android:layout_marginVertical="20dp"
+        android:id="@+id/start_ctrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@drawable/smallwindowbg"
+        android:visibility="gone"
+        >
+
+
+<EditText
+    android:layout_marginHorizontal="30dp"
+    android:layout_marginTop="30dp"
+    android:layout_width="match_parent"
+android:id="@+id/jkdhkjedfhkj"
+    android:layout_height="wrap_content"
+    android:hint="请输入用户名："></EditText>
+
+
+        <Button
+            android:id="@+id/adsfsf"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/crbg2"
+            android:text="确认"
+            android:textColor="@color/white" />
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:text="\n\n\n\n"></TextView>
+
+    </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/bottom_nav_menu" />
+</RelativeLayout>
