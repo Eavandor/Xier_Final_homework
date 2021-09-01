@@ -1,5 +1,6 @@
 package WordItems
 
+import FunctionsInM.AllActivities
 import Login.Login2
 import RetrofitInterfaces.VerificationService
 import ReviewCards.Card
@@ -9,9 +10,11 @@ import TimeAndService.TimeManager
 import TimeAndService.TimeUnitt
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.WindowManager
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,10 +37,14 @@ class WordActivity : AppCompatActivity() {
         var timeclera1=0
     }
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_word2)
-        rr5 = this
         supportActionBar?.hide()
+        rr5 = this
+        AllActivities.addActivity(this)
         getRegister()
 
 

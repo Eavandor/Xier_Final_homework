@@ -1,6 +1,7 @@
 package com.example.memorybooster
 
 
+import FunctionsInM.AllActivities
 import FunctionsInM.ChooseImg
 import FunctionsInM.ChoosingNoise
 import android.content.Context
@@ -27,13 +28,15 @@ companion object{lateinit var msgshow:TextView}
         viewHolder.itemView.setOnClickListener {
             val position = viewHolder.adapterPosition
             val fruit = fruitList[position]
-            alertWindow(fruit.name,parent.context,viewHolder)
+//            alertWindow(fruit.name,parent.context,viewHolder)
+            alertWindow(viewHolder.fruitName.text.toString(),parent.context,viewHolder)
 //            Toast.makeText(parent.context, "you clicked view ${fruit.name}", Toast.LENGTH_SHORT).show()
         }
         viewHolder.fruitImage.setOnClickListener {
             val position = viewHolder.adapterPosition
             val fruit = fruitList[position]
-            alertWindow(fruit.name,parent.context,viewHolder)
+//            alertWindow(fruit.name,parent.context,viewHolder)
+            alertWindow(viewHolder.fruitName.text.toString(),parent.context,viewHolder)
 //            Toast.makeText(parent.context, "you clicked image ${fruit.name}", Toast.LENGTH_SHORT).show()
         }
         return viewHolder
@@ -160,6 +163,8 @@ Me.ain="name"
             }
         }else if(name.equals("关于我们")){
             al("关于我们","    Memory Booster是一款能够帮助同学们更加科学，有效地记忆知识点的助记利器，健忘的克星，app根据艾宾浩斯遗忘曲线，设定了8个记忆巩固点，若同学们能够完完全全按照本app的记忆点进行复习，那么理论上，将会牢牢地记住知识点，在极大程度上提高学习效率。开发团队：rm -rf；后端：朱丹清；美工：苏垚；Android:林宇涵",conte)
+        }else if(name.equals("退出登陆")){
+            AllActivities.clearActivities()
         }
     }
     fun al(name:String,contents:String,conte:Context){

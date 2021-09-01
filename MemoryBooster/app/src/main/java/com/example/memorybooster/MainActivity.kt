@@ -1,5 +1,6 @@
 package com.example.memorybooster
 
+import FunctionsInM.AllActivities
 import Login.Login2
 import RetrofitInterfaces.VerificationService
 import ReviewCards.Card
@@ -16,6 +17,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -41,11 +43,14 @@ class MainActivity : AppCompatActivity() {
     }
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
         rr4=this
-
+        AllActivities.addActivity(this)
         //底部导航栏部分：
         var  mBottomNavigationView4: BottomNavigationView = findViewById<BottomNavigationView>(R.id.nav2)
         mBottomNavigationView4.selectedItemId=R.id.tools

@@ -1,12 +1,15 @@
 package ReviewItems
 
+import FunctionsInM.AllActivities
 import Login.Login2
 import RetrofitInterfaces.VerificationService
 import ReviewCards.Card
 import WordItems.*
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,8 +27,13 @@ import kotlin.concurrent.thread
 class TryWordBack : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_try_word_back)
+        supportActionBar?.hide()
+        AllActivities.addActivity(this)
         getRegister()
     }
 

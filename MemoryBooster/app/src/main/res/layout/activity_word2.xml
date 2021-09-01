@@ -11,6 +11,7 @@ android:background="#f7f7f7"
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
         android:scrollbars="none"
         >
     <LinearLayout
@@ -49,15 +50,32 @@ android:id="@+id/kujhedfkajh"
             android:gravity="left"
             android:padding="10dp"
             >
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:id="@+id/bookname"
-                android:text="六级词汇"
-                android:textSize="20dp"
-                ></TextView>
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:id="@+id/bookname"
+                    android:text="六级词汇"
+                    android:textSize="20dp"
+                    android:layout_marginRight="10dp"
+                    ></TextView>
+                <Button
+
+                    android:id="@+id/modifyPlan"
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/crbg4"
+                    android:text="修改计划"
+                    ></Button>
+            </LinearLayout>
+
             <TextView
                 android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
@@ -83,14 +101,7 @@ android:layout_marginTop="5dp"
                 android:text="已学单词：   30/100"
                 android:textSize="15dp"
                 ></TextView>
-            <Button
-                android:layout_marginTop="9dp"
-                android:id="@+id/modifyPlan"
-                android:layout_width="80dp"
-                android:layout_height="20dp"
-                android:background="@drawable/crbg4"
-                android:text="修改计划"
-                ></Button>
+
         </LinearLayout>
 
     </LinearLayout>
@@ -110,7 +121,7 @@ android:layout_marginTop="5dp"
         ></TextView>
     <LinearLayout
         android:layout_marginVertical="20dp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
@@ -198,7 +209,7 @@ android:layout_marginTop="5dp"
     android:layout_height="wrap_content"
     android:layout_below="@+id/li1"
     android:background="@drawable/blockbg"
-    android:padding="20dp"
+    android:paddingTop="20dp"
     android:orientation="vertical"
     android:gravity="left"
     >

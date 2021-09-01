@@ -24,7 +24,6 @@
             android:enabled="true"
             android:exported="true" />
 
-
         <activity android:name="FunctionsInM.ChooseImg"
             />
         <activity android:name="Login.Labs">
@@ -33,7 +32,9 @@
         <activity android:name="ReviewItems.TryWordBack" />
         <activity android:name="WordItems.DisplarAWordCard" />
         <activity android:name="ReviewCards.ShowTextCard" />
-        <activity android:name="ReviewCards.CreateReviewCard" />
+        <activity android:name="ReviewCards.CreateReviewCard" >
+
+        </activity>
         <activity android:name=".ModifyPlanActivity2" />
         <activity android:name="WordItems.WordActivity" />
         <activity android:name=".SplashActivity"
@@ -52,7 +53,9 @@
 
         <activity android:name=".Try3" />
         <activity android:name=".Try2" />
-        <activity android:name=".Me" />
+        <activity android:name=".Me" >
+
+        </activity>
         <activity android:name="Login.CreateAccount" />
         <activity android:name="Login.Login2">
 

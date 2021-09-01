@@ -1,11 +1,14 @@
 package WordItems
 
+import FunctionsInM.AllActivities
 import Login.Login2
 import RetrofitInterfaces.VerificationService
 import android.content.Intent
 import android.media.MediaPlayer
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -23,7 +26,13 @@ import java.util.*
 
 class DisplarAWordCard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_displar_aword_card)
+        supportActionBar?.hide()
+        AllActivities.addActivity(this)
 
 
 
@@ -46,7 +55,7 @@ class DisplarAWordCard : AppCompatActivity() {
                     mediaPlayer.start()}
             }
         }
-        setContentView(R.layout.activity_displar_aword_card)
+
         var page=GetWordByInt.communicationWordCard.wordList.size
         var previousRecord=GetWordByInt.communicationWordCard.points
         var ttime=GetWordByInt.communicationWordCard.time

@@ -1,5 +1,6 @@
 package com.example.memorybooster
 
+import WordItems.WordActivity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -29,7 +30,7 @@ companion object{
                 NotificationChannel(channelId, notificationName, NotificationManager.IMPORTANCE_HIGH)
             manager.createNotificationChannel(channel)
         }
-        val intent = Intent(conte, Try2::class.java)
+        val intent = Intent(conte, MainActivity::class.java)
         val p = PendingIntent.getActivity(conte, 0, intent, 0)
         val notification = NotificationCompat.Builder(conte, channelId)
             .setContentTitle(title)
@@ -70,7 +71,6 @@ companion object{
         manager.notify(1, notification)
 
     }
-
 
 
     /**

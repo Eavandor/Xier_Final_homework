@@ -1,5 +1,6 @@
 package Login
 
+import FunctionsInM.AllActivities
 import FunctionsInM.ModifyNameAndPassword
 import RetrofitInterfaces.VerificationService
 import ReviewItems.TryWordBack
@@ -8,8 +9,10 @@ import android.annotation.SuppressLint
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.*
 import com.example.memorybooster.MainActivity
 import com.example.memorybooster.Notificationnnn
@@ -48,9 +51,13 @@ class Login2 : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         super.onCreate(savedInstanceState)
 oiop=this
         supportActionBar?.hide()
+
         setContentView(R.layout.activity_login2)
         Notificationnnn.manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         Notificationnnn.resources=resources
@@ -65,13 +72,13 @@ oiop=this
         findViewById<Button>(R.id.cra22b).setOnClickListener {
             var email=findViewById<EditText>(R.id.ed2).text.toString()
             var pwd=findViewById<EditText>(R.id.ed5).text.toString()
-            var cbox = findViewById<CheckBox>(R.id.cb132)
-            var keepLogin = false
-            if (cbox.isChecked) {
-                keepLogin = true
-            } else {
-                keepLogin = false
-            }
+//            var cbox = findViewById<CheckBox>(R.id.cb132)
+//            var keepLogin = false
+//            if (cbox.isChecked) {
+//                keepLogin = true
+//            } else {
+//                keepLogin = false
+//            }
             if (email==""||pwd==""){
                 Toast.makeText(
                     getApplicationContext(),

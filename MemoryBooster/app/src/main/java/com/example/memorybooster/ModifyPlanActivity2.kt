@@ -1,12 +1,15 @@
 package com.example.memorybooster
 
+import FunctionsInM.AllActivities
 import Login.Login2
 import RetrofitInterfaces.VerificationService
 import WordItems.DbHelper
 import WordItems.WordActivity
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.*
 import okhttp3.ResponseBody
 import org.json.JSONObject
@@ -16,11 +19,14 @@ import retrofit2.Response
 
 class ModifyPlanActivity2 : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modify_plan2)
 
         supportActionBar?.hide()
-
+        AllActivities.addActivity(this)
         findViewById<SeekBar>(R.id.sk1).setOnSeekBarChangeListener(this)
 
         var boo=""

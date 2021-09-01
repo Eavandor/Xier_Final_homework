@@ -1,10 +1,13 @@
 package Login
 
+import FunctionsInM.AllActivities
 import FunctionsInM.ModifyNameAndPassword
 import RetrofitInterfaces.VerificationService
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.memorybooster.R
@@ -21,9 +24,13 @@ class CreateAccount : AppCompatActivity() {
     var emailAddress=""
     var pwdfinal=""
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
         supportActionBar?.hide()
+        AllActivities.addActivity(this)
         //点击获取验证码：
         findViewById<Button>(R.id.vinlogin4).setOnClickListener {
             getVerification(findViewById<EditText>(R.id.ed235).text.toString())
@@ -39,13 +46,13 @@ var email=findViewById<EditText>(R.id.ed235).text.toString()
             var pwd1=findViewById<EditText>(R.id.ed236).text.toString()
             var pwd2=findViewById<EditText>(R.id.ed237).text.toString()
             var verification=findViewById<EditText>(R.id.ed556).text.toString()
-            var cbox = findViewById<CheckBox>(R.id.cb111132)
-            var keepLogin = false
-            if (cbox.isChecked) {
-                keepLogin = true
-            } else {
-                keepLogin = false
-            }
+//            var cbox = findViewById<CheckBox>(R.id.cb111132)
+//            var keepLogin = false
+//            if (cbox.isChecked) {
+//                keepLogin = true
+//            } else {
+//                keepLogin = false
+//            }
             if (email==""||pwd1==""||pwd2==""||verification==""){
                 Toast.makeText(
                     getApplicationContext(),
@@ -131,13 +138,13 @@ fun getRegister(jso:String){
                             if (feedback.contains("注册成功")){
                                 Toast.makeText(
                                     getApplicationContext(),
-                                    "注册成功",
-                                    Toast.LENGTH_SHORT
+                                    "注册成功，请前往登陆界面登陆",
+                                    Toast.LENGTH_LONG
                                 ).show();
                                 var jso: JSONObject = JSONObject()
                                 jso.put("username",Login2.usn)
                                 jso.put("password",Login2.p.toInt())
-                                CreateSuccessAndLogin().getRegister(jso.toString(),applicationContext)
+//                                CreateSuccessAndLogin().getRegister(jso.toString(),applicationContext)
                             }else{
                                 Toast.makeText(
                                     getApplicationContext(),
@@ -192,7 +199,6 @@ fun getRegister(jso:String){
                     response: Response<ResponseBody>
                 ) {
                     var hea=response.headers()
-                    var token=hea.get("Set-Token")
                     var feedback = response.body()?.string()
 
                     if (feedback != null) {

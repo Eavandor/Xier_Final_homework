@@ -1,13 +1,16 @@
 package ReviewCards
 
+import FunctionsInM.AllActivities
 import Login.Login2
 import RetrofitInterfaces.VerificationService
 import TimeAndService.TimeManager
 import TimeAndService.TimeUnitt
 import WordItems.WordActivity
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -29,8 +32,13 @@ class CreateReviewCard : AppCompatActivity() {
         var name0=""
     }
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_review_card)
+        supportActionBar?.hide()
+        AllActivities.addActivity(this)
         findViewById<Button>(R.id.submitTextContent).setOnClickListener {
             Toast.makeText(
                 getApplicationContext(),

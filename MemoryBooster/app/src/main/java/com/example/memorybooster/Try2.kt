@@ -36,10 +36,10 @@ class Try2 : AppCompatActivity() {
             var content = findViewById<EditText>(R.id.askjk132).text.toString()
 
             Notificationnnn().send(this,"1","233",title,content,"")
-Thread.sleep(5000)
-            Notificationnnn().send(this,"1","233",title,content,"")
-            Thread.sleep(5000)
-            Notificationnnn().send(this,"1","233",title,content,"")
+//Thread.sleep(5000)
+//            Notificationnnn().send(this,"1","233",title,content,"")
+//            Thread.sleep(5000)
+//            Notificationnnn().send(this,"1","233",title,content,"")
 
 
 

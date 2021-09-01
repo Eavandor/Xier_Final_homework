@@ -2,8 +2,10 @@ package FunctionsInM
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import com.example.memorybooster.Me
@@ -11,8 +13,13 @@ import com.example.memorybooster.R
 
 class ChooseImg : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_img)
+        supportActionBar?.hide()
+        AllActivities.addActivity(this)
         findViewById<ImageView>(R.id.img1).setOnClickListener {
 
             al(this,1)

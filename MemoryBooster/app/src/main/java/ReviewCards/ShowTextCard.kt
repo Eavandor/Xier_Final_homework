@@ -1,13 +1,16 @@
 package ReviewCards
 
+import FunctionsInM.AllActivities
 import Login.Login2
 import RetrofitInterfaces.VerificationService
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.media.MediaPlayer
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -27,8 +30,13 @@ import java.util.*
 
 class ShowTextCard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_text_card)
+        supportActionBar?.hide()
+        AllActivities.addActivity(this)
         var intent9=intent
 val name=intent9.getStringExtra("name")
         val time=intent9.getStringExtra("time")

@@ -1,13 +1,16 @@
 package com.example.memorybooster
 
+import FunctionsInM.AllActivities
 import FunctionsInM.ModifyNameAndPassword
 import Login.Login2
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import android.view.animation.TranslateAnimation
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,12 +25,13 @@ class Me : AppCompatActivity() {
         var ain="name"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_me)
         supportActionBar?.hide()
-
-
-
+        AllActivities.addActivity(this)
         fram=findViewById<EditText>(R.id.jkdhkjedfhkj)
         rr1=this
         mPopupKayout=findViewById(R.id.start_ctrl)
@@ -37,7 +41,9 @@ class Me : AppCompatActivity() {
             ModifyNameAndPassword.nam=username
         }
         ModifyNameAndPassword.passwor=Login2.p
+        //z这的注释记得删
         findViewById<TextView>(R.id.usernameinme).text=username
+//        findViewById<TextView>(R.id.usernameinme).text="Timothy"
 
         findViewById<Button>(R.id.adsfsf).setOnClickListener {
             var ctrlAnimation:TranslateAnimation=TranslateAnimation(TranslateAnimation.RELATIVE_TO_SELF,
@@ -61,15 +67,18 @@ class Me : AppCompatActivity() {
 //                val editor=getSharedPreferences("data",Context.MODE_PRIVATE).edit()
 //                editor.putString("name",nsn)
 //                editor.apply()
-//                Login2.usn=nsn
                 ModifyNameAndPassword.nam=nsn
+                ModifyNameAndPassword.passwor=Login2.p
             }else if (ain=="password"){
 //                val editor=getSharedPreferences("data",Context.MODE_PRIVATE).edit()
 //                editor.putString("password",nsn)
 //                editor.apply()
 //                Login2.p=nsn
     if (nsn.length<6||nsn.length>12){
-        ModifyNameAndPassword.passwor=nsn
+        if (username != null) {
+            ModifyNameAndPassword.nam=username
+        }
+        ModifyNameAndPassword.passwor=Login2.p
         Toast.makeText(this, "密码只能是6-12位长的数字哦", Toast.LENGTH_SHORT).show()
     }else if (ModifyNameAndPassword().onlyHaveDigit(nsn)==false){
         Toast.makeText(
@@ -78,8 +87,17 @@ class Me : AppCompatActivity() {
             Toast.LENGTH_LONG
         )
             .show();
-    }else{
+        if (username != null) {
+            ModifyNameAndPassword.nam=username
+        }
         ModifyNameAndPassword.passwor=Login2.p
+    }else{
+        ModifyNameAndPassword.passwor=nsn
+        //z这的注释记得删
+        if (username != null) {
+            ModifyNameAndPassword.nam=username
+        }
+
     }
 
             }
@@ -90,8 +108,6 @@ class Me : AppCompatActivity() {
             jso.put("nickname",ModifyNameAndPassword.nam)
             ModifyNameAndPassword().getRegister(jso.toString(),this)
         }
-        
-
         var  mBottomNavigationView4: BottomNavigationView = findViewById<BottomNavigationView>(R.id.nav3)
         mBottomNavigationView4.selectedItemId=R.id.me
         rr1=this
@@ -116,73 +132,42 @@ class Me : AppCompatActivity() {
         var opentoastornot=editor.getBoolean("openToast",false)
 
 
-        fruitlist.add(0, Fruit("更改昵称",R.drawable.edit))
+        fruitlist.add(0, Fruit("更改昵称",R.drawable.mei1))
         if (announcementornot){
-            fruitlist.add(1, Fruit("弹窗提醒：开启",R.drawable.edit))
+            fruitlist.add(1, Fruit("弹窗提醒：开启",R.drawable.pop))
         }else{
-            fruitlist.add(1, Fruit("弹窗提醒：关闭",R.drawable.edit))
+            fruitlist.add(1, Fruit("弹窗提醒：关闭",R.drawable.pop))
         }
         if (viborateOrnot){
-            fruitlist.add(2, Fruit("振动提醒：开启",R.drawable.edit))
+            fruitlist.add(2, Fruit("振动提醒：开启",R.drawable.vibrate))
         }else{
-            fruitlist.add(2, Fruit("振动提醒：关闭",R.drawable.edit))
+            fruitlist.add(2, Fruit("振动提醒：关闭",R.drawable.vibrate))
         }
         if (ringornot){
-            fruitlist.add(3, Fruit("提示音提醒：开启",R.drawable.edit))
+            fruitlist.add(3, Fruit("提示音提醒：开启",R.drawable.ring))
         }else{
-            fruitlist.add(3, Fruit("提示音提醒：关闭",R.drawable.edit))
+            fruitlist.add(3, Fruit("提示音提醒：关闭",R.drawable.ring))
         }
-        fruitlist.add(4, Fruit("帮助与反馈",R.drawable.edit))
-        fruitlist.add(5, Fruit("关于我们",R.drawable.edit))
+        fruitlist.add(4, Fruit("帮助与反馈",R.drawable.feedback))
+        fruitlist.add(5, Fruit("关于我们",R.drawable.aboutus))
         if (opennoiseornot){
-            fruitlist.add(6, Fruit("白噪音状态：开启",R.drawable.edit))
+            fruitlist.add(6, Fruit("白噪音状态：开启",R.drawable.whitnoise))
         }else{
-            fruitlist.add(6, Fruit("白噪音状态：关闭",R.drawable.edit))
+            fruitlist.add(6, Fruit("白噪音状态：关闭",R.drawable.whitnoise))
         }
 
-        fruitlist.add(7, Fruit("选择白噪音",R.drawable.edit))
-        fruitlist.add(8, Fruit("文字卡背景",R.drawable.edit))
-        fruitlist.add(9, Fruit("更改头像",R.drawable.edit))
-        fruitlist.add(10, Fruit("更改密码",R.drawable.edit))
+        fruitlist.add(7, Fruit("选择白噪音",R.drawable.choosenoise))
+        fruitlist.add(8, Fruit("文字卡背景",R.drawable.cardbg))
+        fruitlist.add(9, Fruit("退出登陆",R.drawable.changeico))
+        fruitlist.add(10, Fruit("更改密码",R.drawable.changepwd))
 
         if (opentoastornot){
-            fruitlist.add(11, Fruit("弹窗通知：开启",R.drawable.edit))
+            fruitlist.add(11, Fruit("弹窗通知：开启",R.drawable.pop))
         }else{
-            fruitlist.add(11, Fruit("弹窗通知：关闭",R.drawable.edit))
+            fruitlist.add(11, Fruit("弹窗通知：关闭",R.drawable.pop))
         }
-//        fruitlist.add(11, Fruit("注销账户",R.drawable.edit))
-//        fruitlist.add(6, Fruit("注销账户",R.drawable.edit))
-//        /****************
-//         *
-//         * 发起添加群流程。群号：若曵、林宇涵、行星…(518806880) 的 key 为： je63ll5g8f6sZCq5uo1DMfFtqJHUfPnR
-//         * 调用 joinQQGroup(je63ll5g8f6sZCq5uo1DMfFtqJHUfPnR) 即可发起手Q客户端申请加群 若曵、林宇涵、行星…(518806880)
-//         *
-//         * @param key 由官网生成的key
-//         * @return 返回true表示呼起手Q成功，返回false表示呼起失败
-//         ******************/
-//        public boolean joinQQGroup(String key) {
-//            Intent intent = new Intent();
-//            intent.setData(Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26jump_from%3Dwebapi%26k%3D" + key));
-//            // 此Flag可根据具体产品需要自定义，如设置，则在加群界面按返回，返回手Q主界面，不设置，按返回会返回到呼起产品界面    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//            try {
-//                startActivity(intent);
-//                return true;
-//            } catch (Exception e) {
-//                // 未安装手Q或安装的版本不支持
-//                return false;
-//            }
-//        }
-
-
-
-
-
 
     }
-
-
-
-
 
     fun initBottomNavigation() {
         var  mBottomNavigationView:BottomNavigationView = findViewById<BottomNavigationView>(R.id.nav3)

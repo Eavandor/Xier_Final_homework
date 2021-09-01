@@ -1,5 +1,6 @@
 package Login
 
+import FunctionsInM.AllActivities
 import FunctionsInM.MyService
 import android.content.Intent
 import android.content.res.AssetFileDescriptor
@@ -17,6 +18,7 @@ class Labs : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_labs)
+        AllActivities.addActivity(this)
 var i=0
         findViewById<Button>(R.id.jdskf).setOnClickListener {
             if (i==0){
