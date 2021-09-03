@@ -125,7 +125,7 @@ class Me : AppCompatActivity() {
     fun initFruits(fruitlist:ArrayList<Fruit>){
 
         val editor=rr1.getSharedPreferences("data",Context.MODE_PRIVATE)
-        var announcementornot=editor.getBoolean("openNotification",true)
+        var announcementornot=editor.getBoolean("openNotification",false)
         var viborateOrnot=editor.getBoolean("openViborate",false)
         var ringornot=editor.getBoolean("openRing",false)
         var opennoiseornot=editor.getBoolean("openNoise",false)

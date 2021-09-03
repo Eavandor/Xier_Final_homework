@@ -141,8 +141,6 @@ var status="1"   //1是正在进行中的，0是完成的卡片
 
 
 
-
-
     }
     fun initBottomNavigation() {
         var  mBottomNavigationView: BottomNavigationView = findViewById<BottomNavigationView>(R.id.nav2)
@@ -249,15 +247,15 @@ var status="1"   //1是正在进行中的，0是完成的卡片
                         }else{
                             Toast.makeText(
                                 getApplicationContext(),
-                                "上传失败",
-                                Toast.LENGTH_LONG
+                                "请求失败",
+                                Toast.LENGTH_SHORT
                             ).show();
                         }
                     }else{
                         Toast.makeText(
                             getApplicationContext(),
-                            "上传失败",
-                            Toast.LENGTH_LONG
+                            "请检查网络",
+                            Toast.LENGTH_SHORT
                         ).show();
                     }
 

@@ -19,8 +19,6 @@ class MyService : Service() {
         var mediaPlayer= MediaPlayer.create(this, R.raw.tishiying)
         mediaPlayer.isLooping=true
         mediaPlayer.start()
-
-
         return super.onStartCommand(intent, flags, startId)
 
     }

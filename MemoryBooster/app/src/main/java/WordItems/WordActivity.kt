@@ -53,7 +53,6 @@ class WordActivity : AppCompatActivity() {
         mBottomNavigationView4.selectedItemId = R.id.myhome
         initBottomNavigation()
 
-
         //数据库
         val dbh = DbHelper(getApplicationContext(), "db1.db", 1)
         val db = dbh.writableDatabase
@@ -330,7 +329,7 @@ coli.add(WordCard2(id,lll,time,record,book))
                         } else {
                             Toast.makeText(
                                 getApplicationContext(),
-                                "登陆失败",
+                                "单词表加载失败",
                                 Toast.LENGTH_LONG
                             ).show();
                         }

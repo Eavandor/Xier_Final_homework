@@ -69,7 +69,7 @@ class CreateReviewCard : AppCompatActivity() {
                     Toast.makeText(
                         getApplicationContext(),
                         "请求失败！！！原因：\n" + t.message,
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_SHORT
                     ).show();
                 }
 
@@ -116,14 +116,14 @@ class CreateReviewCard : AppCompatActivity() {
                             Toast.makeText(
                                 getApplicationContext(),
                                 "上传失败",
-                                Toast.LENGTH_LONG
+                                Toast.LENGTH_SHORT
                             ).show();
                         }
                     }else{
                         Toast.makeText(
                             getApplicationContext(),
-                            "上传失败",
-                            Toast.LENGTH_LONG
+                            "请检查网络",
+                            Toast.LENGTH_SHORT
                         ).show();
                     }
 

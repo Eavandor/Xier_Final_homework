@@ -62,4 +62,9 @@ interface VerificationService {
     fun updateUserIformation(
         @Header("Authorization") token:String,
         @Body jso:RequestBody): Call<ResponseBody>
+
+    @GET("board/mine")
+    fun sendMissCountMsg(@Header("Authorization") token:String): Call<ResponseBody>
+
+
 }

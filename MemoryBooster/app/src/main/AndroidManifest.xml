@@ -17,7 +17,9 @@
         android:theme="@style/Theme.MemoryBooster"
         android:usesCleartextTraffic="true">
 
-        <activity android:name="FunctionsInM.ChoosingNoise"></activity>
+        <activity android:name="FunctionsInM.ChoosingNoise">
+
+        </activity>
 
         <service
             android:name="FunctionsInM.MyService"
@@ -25,7 +27,9 @@
             android:exported="true" />
 
         <activity android:name="FunctionsInM.ChooseImg"
-            />
+            >
+
+        </activity>
         <activity android:name="Login.Labs">
 
         </activity>

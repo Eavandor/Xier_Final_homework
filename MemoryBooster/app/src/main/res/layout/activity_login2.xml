@@ -11,14 +11,14 @@
     android:paddingHorizontal="30dp"
     tools:context="Login.Login2">
 <ImageView
-    android:layout_marginTop="75dp"
+    android:layout_marginTop="70dp"
     android:layout_width="270dp"
     android:layout_height="180dp"
     android:src="@drawable/loginimg"></ImageView>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="80dp"
+    android:layout_marginTop="60dp"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingHorizontal="20dp"
@@ -117,7 +117,7 @@
         android:id="@+id/cra22b"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/crbg2"
         android:textSize="21dp"
         android:text="登录"
@@ -125,7 +125,7 @@
 
         <TextView
             android:id="@+id/gotoca"
-android:layout_marginTop="15dp"
+android:layout_marginTop="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="17dp"

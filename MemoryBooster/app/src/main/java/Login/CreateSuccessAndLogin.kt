@@ -63,14 +63,14 @@ class CreateSuccessAndLogin {
                                 Toast.makeText(
                                     context,
                                     "登陆失败",
-                                    Toast.LENGTH_LONG
+                                    Toast.LENGTH_SHORT
                                 ).show();
                             }
                         }else{
                             Toast.makeText(
                                 context,
                                 "请检查网络",
-                                Toast.LENGTH_LONG
+                                Toast.LENGTH_SHORT
                             ).show();
                         }
                     }

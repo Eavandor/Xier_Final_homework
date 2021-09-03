@@ -37,9 +37,10 @@ class Login2 : AppCompatActivity() {
        lateinit var token:String
         lateinit var usn:String
         lateinit var p:String
+        var missCount=0
         val client: OkHttpClient = OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS).writeTimeout(10, TimeUnit.SECONDS)
-            .build()   //设置各种超时都是5秒钟
+            .build()   //设置各种超时都是10秒钟
 
         var publicretrofit =
             Retrofit.Builder().baseUrl("http://planeter.icu:9000/").client(
@@ -173,14 +174,14 @@ oiop=this
                                 Toast.makeText(
                                     getApplicationContext(),
                                     "登陆失败",
-                                    Toast.LENGTH_LONG
+                                    Toast.LENGTH_SHORT
                                 ).show();
                             }
                         }else{
                             Toast.makeText(
                                 getApplicationContext(),
                                 "请检查网络",
-                                Toast.LENGTH_LONG
+                                Toast.LENGTH_SHORT
                             ).show();
                         }
                     }

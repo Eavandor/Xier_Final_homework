@@ -50,11 +50,6 @@ companion object{
             .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.head))
             .build()
 
-
-
-
-
-        Thread.sleep(1000)
         val editor=conte.getSharedPreferences("data",0)
         var wantring=editor.getBoolean("openRing",true)
         var wantvibrate=editor.getBoolean("openViborate",true)

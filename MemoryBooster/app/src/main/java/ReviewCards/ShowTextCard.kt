@@ -29,6 +29,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ShowTextCard : AppCompatActivity() {
+    companion object{
+        lateinit var mediaPlayer: MediaPlayer
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -50,26 +53,21 @@ val name=intent9.getStringExtra("name")
         var needNoise=edi.getBoolean("openNoise",false)
         if (needNoise){
             when(noise){
-                1->{  var mediaPlayer= MediaPlayer.create(this,R.raw.bnoise)
+                1->{  mediaPlayer= MediaPlayer.create(this,R.raw.bnoise)
                     mediaPlayer.isLooping=true
                     mediaPlayer.start()}
-                2->{  var mediaPlayer= MediaPlayer.create(this,R.raw.flotingwater)
+                2->{   mediaPlayer= MediaPlayer.create(this,R.raw.flotingwater)
                     mediaPlayer.isLooping=true
                     mediaPlayer.start()}
-                3->{  var mediaPlayer= MediaPlayer.create(this,R.raw.fire)
+                3->{   mediaPlayer= MediaPlayer.create(this,R.raw.fire)
                     mediaPlayer.isLooping=true
                     mediaPlayer.start()}
-                4->{  var mediaPlayer= MediaPlayer.create(this,R.raw.forestrain)
+                4->{   mediaPlayer= MediaPlayer.create(this,R.raw.forestrain)
                     mediaPlayer.isLooping=true
                     mediaPlayer.start()}
             }
         }
 
-//        Toast.makeText(
-//            getApplicationContext(),
-//            "name:"+name+";time:"+time+";id:"+id+";content:"+content+";points:"+points,
-//            Toast.LENGTH_LONG
-//        ).show();
 val editor=getSharedPreferences("data",0)
         var imgindex=editor.getInt("pic",1)
         val resources: Resources = applicationContext.resources
@@ -103,13 +101,18 @@ findViewById<TextView>(R.id.con345tent1).text=content
 
     }
 
+    @Override
+    override fun onPause() {
+        super.onPause()
+        val edi=getSharedPreferences("data",0)
+        var needNoise=edi.getBoolean("openNoise",false)
+        if (needNoise==true){
+            mediaPlayer.stop()
+            mediaPlayer.release()
+        }
 
+    }
     fun getRegister(id:String,record:String){
-        Toast.makeText(
-            getApplicationContext(),
-            "record:" +record+"\nid"+id,
-            Toast.LENGTH_LONG
-        ).show();
         val retr = Login2.publicretrofit
         retr.create(VerificationService::class.java). updateTextCardMsg(Login2.token,id,record)
             .enqueue(object : Callback<ResponseBody> {
@@ -117,7 +120,7 @@ findViewById<TextView>(R.id.con345tent1).text=content
                     Toast.makeText(
                         getApplicationContext(),
                         "请求失败！！！原因：\n" + t.message,
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_SHORT
                     ).show();
                 }
 
@@ -131,24 +134,18 @@ findViewById<TextView>(R.id.con345tent1).text=content
 
                     if (feedback != null) {
                         if (feedback.contains("操作成功")){
-                            Toast.makeText(
-                                getApplicationContext(),
-                                "新record：" +record,
-                                Toast.LENGTH_LONG
-                            ).show();
-
                         }else{
                             Toast.makeText(
                                 getApplicationContext(),
-                                "数据更新失败"+hea+feedback,
-                                Toast.LENGTH_LONG
+                                "数据更新失败",
+                                Toast.LENGTH_SHORT
                             ).show();
                         }
                     }else{
                         Toast.makeText(
                             getApplicationContext(),
-                            "数据更新失败"+hea+feedback,
-                            Toast.LENGTH_LONG
+                            "请检查网络"+hea+feedback,
+                            Toast.LENGTH_SHORT
                         ).show();
                     }
 

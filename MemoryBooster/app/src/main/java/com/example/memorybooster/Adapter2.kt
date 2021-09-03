@@ -17,6 +17,9 @@ import android.view.LayoutInflater
 import android.view.animation.TranslateAnimation
 import androidx.appcompat.app.AlertDialog
 class Adapter2(val fruitList: List<Fruit>) : RecyclerView.Adapter<Adapter2.ViewHolder>() {
+
+    //这个类，适配器，在“我的”activity中，显示功能清单，以及处理逻辑
+
 companion object{lateinit var msgshow:TextView}
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var fruitImage: ImageView = view.findViewById(R.id.fruitImage)
@@ -53,14 +56,14 @@ companion object{lateinit var msgshow:TextView}
         if(name.equals("更改昵称")){
             Me.fram.hint="请输入新用户名"
 Me.ain="name"
-            var ctrlAnimation: TranslateAnimation = TranslateAnimation(
+            var ctrlAnimation: TranslateAnimation = TranslateAnimation(    //开启动画，打开藏起来的LinearLayout
                 TranslateAnimation.RELATIVE_TO_SELF,
                 0F, TranslateAnimation.RELATIVE_TO_SELF, 0F,
                 TranslateAnimation.RELATIVE_TO_SELF,
                 1F, TranslateAnimation.RELATIVE_TO_SELF,
                 0F
             )
-            ctrlAnimation.duration=1000
+            ctrlAnimation.duration=1000            //动画过程花费1秒钟
             Me.mPopupKayout.postDelayed(Runnable {
                 Me.mPopupKayout.visibility= View.VISIBLE
                 Me.mPopupKayout.startAnimation(ctrlAnimation)

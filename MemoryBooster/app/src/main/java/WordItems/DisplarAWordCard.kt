@@ -3,6 +3,7 @@ package WordItems
 import FunctionsInM.AllActivities
 import Login.Login2
 import RetrofitInterfaces.VerificationService
+import ReviewCards.ShowTextCard
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Build
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.memorybooster.Judger
@@ -23,8 +25,12 @@ import retrofit2.Response
 import java.text.ParsePosition
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.concurrent.thread
 
 class DisplarAWordCard : AppCompatActivity() {
+    companion object{
+        lateinit var mediaPlayer: MediaPlayer
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -41,44 +47,44 @@ class DisplarAWordCard : AppCompatActivity() {
         var needNoise=edi.getBoolean("openNoise",false)
         if (needNoise){
             when(noise){
-                1->{  var mediaPlayer= MediaPlayer.create(this,R.raw.bnoise)
+                1->{   mediaPlayer= MediaPlayer.create(this,R.raw.bnoise)
                     mediaPlayer.isLooping=true
                     mediaPlayer.start()}
-                2->{  var mediaPlayer= MediaPlayer.create(this,R.raw.flotingwater)
+                2->{   mediaPlayer= MediaPlayer.create(this,R.raw.flotingwater)
                     mediaPlayer.isLooping=true
                     mediaPlayer.start()}
-                3->{  var mediaPlayer= MediaPlayer.create(this,R.raw.fire)
+                3->{  mediaPlayer= MediaPlayer.create(this,R.raw.fire)
                     mediaPlayer.isLooping=true
                     mediaPlayer.start()}
-                4->{  var mediaPlayer= MediaPlayer.create(this,R.raw.forestrain)
+                4->{   mediaPlayer= MediaPlayer.create(this,R.raw.forestrain)
                     mediaPlayer.isLooping=true
                     mediaPlayer.start()}
             }
         }
 
-        var page=GetWordByInt.communicationWordCard.wordList.size
-        var previousRecord=GetWordByInt.communicationWordCard.points
-        var ttime=GetWordByInt.communicationWordCard.time
-        var newRecord= Judger().j(strToDateLong(ttime),previousRecord)
-        var theID=GetWordByInt.communicationWordCard.wordCardID
-        getRegister(theID,newRecord)
-        var index=0
-        var thisword=GetWordByInt.communicationWordCard.wordList[index]
-        conveyJsonMsg(thisword)
+        var page=GetWordByInt.communicationWordCard.wordList.size          //告诉你单词卡有几个词
+        var previousRecord=GetWordByInt.communicationWordCard.points      //修改前的record(record是八个复习点对应的完成情况，1是完成，0是未完成，2是超时)
+        var ttime=GetWordByInt.communicationWordCard.time         //单词卡片的创建时间
+        var newRecord= Judger().j(strToDateLong(ttime),previousRecord)     //拿到一个工具类里面，得出新的record,一会把这个发到后端更新
+        var theID=GetWordByInt.communicationWordCard.wordCardID           //单词卡ID
+        getRegister(theID,newRecord)                                     //把单词卡ID，新的record发送到后端，更新进度（record就是进度）
+        var index=0   //计数器
+        var thisword=GetWordByInt.communicationWordCard.wordList[index]      //从词卡片的list里面拿出第1个包含单词数据的json
+        conveyJsonMsg(thisword)                               //这个函数可以把这个json解析，并显示到UI上
 //        showAllJson(thisword)
 //        findViewById<TextView>(R.id.dkjhsa).text=GetWordByInt.communicationWordCard.wordList.get(index)
-        findViewById<Button>(R.id.np).setOnClickListener {
+        findViewById<Button>(R.id.np).setOnClickListener {              //点击“下一个单词”，跳转到下一个
             index++
-            if (index==page){
+            if (index==page){                //单词卡片里面的最后一个单词结束了，跳转到主页面
                 startActivity(Intent(this,WordActivity::class.java))
                 Toast.makeText(
                     getApplicationContext(),
                     "已完成所有知识点",
-                    Toast.LENGTH_LONG
+                    Toast.LENGTH_SHORT
                 )
                     .show();
             }else{
-                conveyJsonMsg(GetWordByInt.communicationWordCard.wordList[index])
+                conveyJsonMsg(GetWordByInt.communicationWordCard.wordList[index])     //开始拿json里面的信息拿去解析，放进UI
 //                showAllJson(GetWordByInt.communicationWordCard.wordList[index])
             }
         }
@@ -87,12 +93,25 @@ class DisplarAWordCard : AppCompatActivity() {
 
     }
 
-fun showAllJson(jso:String){
+
+    @Override
+    override fun onPause() {
+        super.onPause()
+        val edi=getSharedPreferences("data",0)
+        var needNoise=edi.getBoolean("openNoise",false)
+        if (needNoise==true){
+            mediaPlayer.stop()
+            mediaPlayer.release()
+        }
+
+    }
+
+fun showAllJson(jso:String){                    //测试函数，页面显示未解析的json
     findViewById<TextView>(R.id.meanings).text=jso
 }
 
 
-    fun conveyJsonMsg(jso:String){
+    fun conveyJsonMsg(jso:String){                 //这个函数把传进来的json解析完，显示在UI上
 
         var j=JSONObject(jso)
 
@@ -224,6 +243,11 @@ fun showAllJson(jso:String){
             enen="暂无，等待收录中..."
         }
         findViewById<TextView>(R.id.enmean).text=enen
+        thread {
+            Thread.sleep(100)
+            findViewById<ScrollView>(R.id.kjhajsdh).fullScroll(ScrollView.FOCUS_UP)   //回到顶部
+        }.run()
+
 
     }
     fun strToDateLong(str: String): Date {
@@ -255,24 +279,19 @@ fun showAllJson(jso:String){
 
                     if (feedback != null) {
                         if (feedback.contains("操作成功")){
-                            Toast.makeText(
-                                getApplicationContext(),
-                                "新record：" +record,
-                                Toast.LENGTH_LONG
-                            ).show();
 
                         }else{
                             Toast.makeText(
                                 getApplicationContext(),
                                 "数据更新失败"+hea+feedback,
-                                Toast.LENGTH_LONG
+                                Toast.LENGTH_SHORT
                             ).show();
                         }
                     }else{
                         Toast.makeText(
                             getApplicationContext(),
                             "数据更新失败"+hea+feedback,
-                            Toast.LENGTH_LONG
+                            Toast.LENGTH_SHORT
                         ).show();
                     }
 

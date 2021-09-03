@@ -9,14 +9,14 @@
     android:background="#062150"
     tools:context="FunctionsInM.ChoosingNoise">
     <ImageView
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:layout_width="270dp"
         android:layout_height="180dp"
         android:src="@drawable/loginimg"
         ></ImageView>
 <LinearLayout
     android:padding="20dp"
-    android:layout_marginTop="15dp"
+    android:layout_marginTop="30dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/liniarlayout_in_login"

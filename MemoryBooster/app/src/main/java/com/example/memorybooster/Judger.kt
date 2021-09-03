@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class Judger {
-    fun j(t0: Date, nowRecords:String):String{
+    fun j(t0: Date, nowRecords:String):String{     //这个类收入旧的record,判断到第几个复习点，是否超时，然后返回新的record
         var t9=Date(Date().time)   //现在
         var t1=Date(t0.time+300000)   //5 min。第一个复习点
         var t2=Date(t0.time+1800000)   //30 min。第一个复习点
@@ -27,9 +27,9 @@ class Judger {
 
 
         if (nowAt==0){
-            return "00000000"
+            return "00000000"             //8个复习点里面，连第一个点都没到，直接返回空的record
         }
-        var currentBit=nowRecords.get(nowAt-1)
+        var currentBit=nowRecords.get(nowAt-1)         //
         if (currentBit=='1'||currentBit=='2'){
             return nowRecords
         }

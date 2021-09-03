@@ -39,7 +39,7 @@ class Tyr4 : Service() {
                             Toast.makeText(
             getApplicationContext(),
             m,
-            Toast.LENGTH_LONG
+            Toast.LENGTH_SHORT
         )
             .show();
                 }
@@ -124,9 +124,6 @@ class Tyr4 : Service() {
         Notificationnnn.resources = resources
         var timer = Timer(true)
 
-//    var l=ArrayList<Reminder>()
-//    l.add(Reminder("2021-08-23 19:17:30","操作系统"))
-//    l.add(Reminder("2021-08-23 19:17:50","计算机网络"))
         var l = ArrayList<TimeUnitt>()
 
         if (TimeManager.verifyDigit == 1) {
@@ -146,12 +143,14 @@ class Tyr4 : Service() {
                         eightPoints(t,str,timer)
 
                 }
-                val msg = Message()
-                msg.what = 1
-                var bun = Bundle()
-                bun.putString("content", "叮~~您有"+ expiredPop+"份复习卡片正眼巴巴等你来哦")
-                msg.data = bun
-                handler.sendMessage(msg)
+                if(expiredPop!=0){
+                    val msg = Message()
+                    msg.what = 1
+                    var bun = Bundle()
+                    bun.putString("content", "叮~~您有"+ expiredPop+"份复习卡片正眼巴巴等你来哦")
+                    msg.data = bun
+                    handler.sendMessage(msg)
+                }
                 expiredPop=0
             }
             if (TimeManager.originalWTime.isEmpty() == false&&(wordStarted==false)) {
@@ -162,12 +161,15 @@ class Tyr4 : Service() {
                     var str=a.msg
                     eightPoints(t,str,timer)
                 }
-                val msg = Message()
-                msg.what = 1
-                var bun = Bundle()
-                bun.putString("content", "叮~~您有"+ expiredPop+"份复习卡片正眼巴巴你来哦")
-                msg.data = bun
-                handler.sendMessage(msg)
+                if(expiredPop!=0){
+                    val msg = Message()
+                    msg.what = 1
+                    var bun = Bundle()
+                    bun.putString("content", "叮~~您有"+ expiredPop+"份复习卡片正眼巴巴你来哦")
+                    msg.data = bun
+                    handler.sendMessage(msg)
+                }
+
                 expiredPop=0
             }
 
