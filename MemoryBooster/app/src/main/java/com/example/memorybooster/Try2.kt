@@ -21,7 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 
 
-class Try2 : AppCompatActivity() {
+class Try2 : AppCompatActivity() {            //这个类没有用，测试完发送通知以后，我个笨比交作业前要记得删掉！
     companion object{
         lateinit var rr2: Context
     }

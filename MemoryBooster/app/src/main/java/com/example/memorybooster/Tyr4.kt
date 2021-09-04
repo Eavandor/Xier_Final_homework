@@ -2,6 +2,7 @@ package com.example.memorybooster
 
 import TimeAndService.TimeManager
 import TimeAndService.TimeUnitt
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -17,7 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Tyr4 : Service() {
+class Tyr4 : Service() {         //全app最有用最复杂的类，以一个前台Service的形式，在后台不断发送通知，即便用户退出，也还可以以前台Service的状态运行，不被操作系统回收
     companion object {
         var servi = 0
         var wordStarted=false
@@ -29,7 +30,7 @@ class Tyr4 : Service() {
         override fun handleMessage(msg: Message) {
             var m = msg.data.getString("content")
             if (m != null) {
-                val editor=getSharedPreferences("data",0)
+                val editor=getSharedPreferences("data",0)    //从SharedPreference得到，用户是否希望开启通知，抑或是Toast
                 var need=editor.getBoolean("openNotification",false)
                 var needToast=editor.getBoolean("openToast",false)
                 if (need){
@@ -93,16 +94,7 @@ class Tyr4 : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-//        Toast.makeText(
-//            getApplicationContext(),
-//            "onStartCommand发的信息",
-//            Toast.LENGTH_LONG
-//        )
-//            .show();
-
-        addTimer()
-
-
+        addTimer()             //把通知加入到Timer里面，定时发送的函数，如果加过了，它不会把通知重复加入的
         return super.onStartCommand(intent, flags, startId)
 
     }
@@ -126,18 +118,18 @@ class Tyr4 : Service() {
 
         var l = ArrayList<TimeUnitt>()
 
-        if (TimeManager.verifyDigit == 1) {
-            var t = TimeManager.added.time
-            var str = TimeManager.added.msg
-            eightPoints(t,str,timer)
-            TimeManager.verifyDigit = 0
-        } else {
+        if (TimeManager.verifyDigit == 1) {     //三个地方可以调用这个addTimer()函数，所以运行前要判断一下，是三个调用放中的谁
+            var t = TimeManager.added.time       //这三个调用放需要执行三个不同的功能
+            var str = TimeManager.added.msg      //TimeManager.verifyDigit == 1，说明调用者是创建单词卡或创建文字复习卡片，
+            eightPoints(t,str,timer)              //这时候这个值是1，本灵感来自操作系统的PV操作，但是因为多个卡片不可能同时创建，
+            TimeManager.verifyDigit = 0          //所以不需要“忙等”，不需要循环检查verifyDigit这个“信号量”，并发可能性是0，一定是先后顺序
+        } else {                                  //所以结束以后把这个V操作进行，信号量变成0就好了
 
 
             if (TimeManager.originalTTime.isEmpty() == false&&(textCardStarted==false)) {
-                textCardStarted=true
-                l = TimeManager.originalTTime
-                for (a in l) {
+                textCardStarted=true              //这是说明调用addTimer()的是将所有文字复习卡加入信息提示时间表序列的
+                l = TimeManager.originalTTime      //所有要添加进消息提示弹窗消息队列的文字复习卡片，以及卡片内容（标题，文字内容，创建时间，完成度record) ，全都在里面了
+                for (a in l) {                    //对TimeManager.originalTTime里面的所有卡片遍历，给 eightPoints()函数处理
                     var t = a.time
                     var str=a.msg
                         eightPoints(t,str,timer)
@@ -151,11 +143,11 @@ class Tyr4 : Service() {
                     msg.data = bun
                     handler.sendMessage(msg)
                 }
-                expiredPop=0
+                expiredPop=0      //循环完归零
             }
             if (TimeManager.originalWTime.isEmpty() == false&&(wordStarted==false)) {
                 wordStarted=true
-                l = TimeManager.originalWTime
+                l = TimeManager.originalWTime     //下面这个是单词卡的，跟上面添加逻辑差不多，都是8个复习时间点
                 for (a in l) {
                     var t = a.time
                     var str=a.msg
@@ -201,22 +193,22 @@ class Tyr4 : Service() {
             timer.schedule(tm, Date(strToDateLong(time).time))
         }
     }
-    fun judge2(time: String):Boolean {
-        var c = Date().time
-        var t = strToDateLong(time).time
-        if (c - t > 3600000) {
+    fun judge2(time: String):Boolean {      //用来判断一个时间，是否需要加入发送通知的队列
+        var c = Date().time      //现在的时间
+        var t = strToDateLong(time).time    //复习卡时间点（其中的一个）
+        if (c - t > 3600000) {         //如果现在距离复习卡中的这个时间点已经超时了1小时了,则，返回false，超时过久，不用弹窗，这个时间已经不遵守艾宾浩斯复习曲线了
             return false
 
-        } else if((c-t)<0){
+        } else if((c-t)<0){         //如果这个复习点的时间还没到时 ，也返回false
             return false
         }
-        return true
+        return true      //上面两种复习不需要加入通知弹窗队列的情况都排除了，剩下的就是需要加入弹窗队列的情况了
     }
 
 
 
 
-    fun strToDateLong(str: String): Date {
+    fun strToDateLong(str: String): Date {          //一个把时间字符串（yyyy-MM-dd HH:mm:ss格式），转化为Date()对象的函数
         var s: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         var pos: ParsePosition = ParsePosition(0)
         var date: Date = s.parse(str, pos)
@@ -234,7 +226,7 @@ class Tyr4 : Service() {
         var t6=Date(t0.time+345600000)   //4 day。第一个复习点
         var t7=Date(t0.time+604800000)   //7 day。第一个复习点
         var t8=Date(t0.time+1296000000)   //15 day。第一个复习点
-        var str1=SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(t1)
+        var str1=SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(t1)   //把Date对象转换成字符串
         var str2=SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(t2)
         var str3=SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(t3)
         var str4=SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(t4)
@@ -242,9 +234,9 @@ class Tyr4 : Service() {
         var str6=SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(t6)
         var str7=SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(t7)
         var str8=SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(t8)
-        if (judge2(str1)){
+        if (judge2(str1)){                                                //judge2(str)：判断一个时间是否需要加入通知等待队列
             expiredPop++}else{
-            judge(str1, content+"（第一个复习点）",timer)
+            judge(str1, content+"（第一个复习点）",timer)              //这个函数，可以把复习卡的提示信息，按照时间加入消息通知队列
         }
         if (judge2(str2)){
             expiredPop++}else{

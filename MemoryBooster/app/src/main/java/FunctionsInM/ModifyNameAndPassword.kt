@@ -14,7 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ModifyNameAndPassword {
+class ModifyNameAndPassword {      //一个用来修改用户名和密码的
     companion object{
         var nam=""
         var passwor=""

@@ -84,24 +84,7 @@ var j=JSONObject(feedback).getJSONObject("data")
                                 }
                                 val it= Intent(con, Tyr4::class.java)
                                 con.startService(it)
-
-
-
-
-
                                 getWordListByDigitList(rrr,st,id1,time1,record1,0,WordActivity.bookId)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                             }else{
@@ -174,20 +157,6 @@ var j=JSONObject(feedback).getJSONObject("data")
                                 listcount++
 
                             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         }else{
                             Toast.makeText(
                                 con,

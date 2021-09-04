@@ -52,7 +52,7 @@ class CreateReviewCard : AppCompatActivity() {
             var jso = JSONObject()
             jso.put("name",title)
             jso.put("content",text)
-            getRegister(jso.toString())
+            getRegister(jso.toString())         //把名字（实际上是email）放进josn，用Body的形式传到后端验证
         }
 
 
@@ -77,14 +77,7 @@ class CreateReviewCard : AppCompatActivity() {
                     call: Call<ResponseBody>,
                     response: Response<ResponseBody>
                 ) {
-                    var hea=response.headers().toString()
                     var feedback = response.body()?.string()
-//                    Toast.makeText(
-//                        getApplicationContext(),
-//                        "header:"+hea+";feedback"+feedback ,
-//                        Toast.LENGTH_LONG
-//                    ).show();
-
                     if (feedback != null) {
                         if (feedback.contains("操作成功")){
                             var t=Date(Date().time)
@@ -103,15 +96,10 @@ class CreateReviewCard : AppCompatActivity() {
 
 
                                 TimeManager.verifyDigit=1
-                                TimeManager.added= TimeUnitt(str,name0,"00000000")
-
-
-
+                                TimeManager.added= TimeUnitt(str,name0,"00000000")  //刚创建的初始record是00000000
+                                   //record的每个单数字表示一个复习点的完成状况，0表示未完成，1表示已经完成，2表示这个复习点超时了
                             val it= Intent( getApplicationContext(), Tyr4::class.java)
-                            getApplicationContext().startService(it)
-
-
-
+                            getApplicationContext().startService(it)      //验证成功，开启发送通知的前台Service
                         }else{
                             Toast.makeText(
                                 getApplicationContext(),

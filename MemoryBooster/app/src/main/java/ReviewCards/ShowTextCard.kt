@@ -28,7 +28,7 @@ import java.text.ParsePosition
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ShowTextCard : AppCompatActivity() {
+class ShowTextCard : AppCompatActivity() {        //这个类用来显示一个复习卡片的内容
     companion object{
         lateinit var mediaPlayer: MediaPlayer
     }
@@ -51,7 +51,7 @@ val name=intent9.getStringExtra("name")
         val edi=getSharedPreferences("data",0)
         var noise=edi.getInt("voice",1)
         var needNoise=edi.getBoolean("openNoise",false)
-        if (needNoise){
+        if (needNoise){                        //从SharedPreference里面获取，是否开启白噪音，如果要开，就按照选定的白噪音索引号码来开启对应的白噪音
             when(noise){
                 1->{  mediaPlayer= MediaPlayer.create(this,R.raw.bnoise)
                     mediaPlayer.isLooping=true
@@ -69,7 +69,7 @@ val name=intent9.getStringExtra("name")
         }
 
 val editor=getSharedPreferences("data",0)
-        var imgindex=editor.getInt("pic",1)
+        var imgindex=editor.getInt("pic",1)         //得到背景图片的索引
         val resources: Resources = applicationContext.resources
         var btnDrawable: Drawable = resources.getDrawable(R.drawable.paper)
 
@@ -90,7 +90,6 @@ findViewById<TextView>(R.id.con345tent1).text=content
                 if (time!=null){     //反正这三个不可能是null
                     var newRecord=Judger().j(strToDateLong(time),points)
                     getRegister(id,newRecord)
-//                    getRegister(id,"00000000")
                 }
 
             }

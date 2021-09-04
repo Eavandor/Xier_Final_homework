@@ -44,7 +44,7 @@ class Login2 : AppCompatActivity() {
 
         var publicretrofit =
             Retrofit.Builder().baseUrl("http://planeter.icu:9000/").client(
-                client
+                client                  //一个全局的retrofit前半部分，之后就不用重复写了
             )
                 .addConverterFactory(GsonConverterFactory.create()).build()
       lateinit  var oiop:Context
@@ -63,25 +63,12 @@ oiop=this
         Notificationnnn.manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         Notificationnnn.resources=resources
 
-
-
-
-
-
-
-//登陆
         findViewById<Button>(R.id.cra22b).setOnClickListener {
             var email=findViewById<EditText>(R.id.ed2).text.toString()
             var pwd=findViewById<EditText>(R.id.ed5).text.toString()
-//            var cbox = findViewById<CheckBox>(R.id.cb132)
-//            var keepLogin = false
-//            if (cbox.isChecked) {
-//                keepLogin = true
-//            } else {
-//                keepLogin = false
-//            }
+
             if (email==""||pwd==""){
-                Toast.makeText(
+                Toast.makeText(                  //一系列的用户输入可接受性判断
                     getApplicationContext(),
                     "别急，每一行都要填哦",
                     Toast.LENGTH_LONG
@@ -141,8 +128,8 @@ oiop=this
                     call: Call<ResponseBody>,
                     response: Response<ResponseBody>
                 ) {
-                    var hea=response.headers()
-                    token=hea.get("Set-Token").toString()
+                    var hea=response.headers()             //获取返回的头部
+                    token=hea.get("Set-Token").toString()        //并从中拿到Token
 
                     var feedback = response.body()?.string()
                     if (token==null){
@@ -152,11 +139,6 @@ oiop=this
                             Toast.LENGTH_LONG
                         ).show();
                     }else{
-//                        Toast.makeText(
-//                            getApplicationContext(),
-//                            "token:"+ token+"\n"+hea.toString(),
-//                            Toast.LENGTH_LONG
-//                        ).show();
                         if (feedback != null) {
                             if (feedback.contains("操作成功")){
                                 val editor=getSharedPreferences("data",Context.MODE_PRIVATE).edit()
@@ -165,11 +147,6 @@ oiop=this
                                 editor.apply()
                                 var intent = Intent(getApplicationContext(), WordActivity::class.java)
                                 startActivity(intent)
-
-
-
-//                            var intent = Intent(getApplicationContext(), TryWordBack::class.java)
-//                            startActivity(intent)
                             }else{
                                 Toast.makeText(
                                     getApplicationContext(),

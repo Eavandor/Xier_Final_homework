@@ -11,7 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import com.example.memorybooster.Me
 import com.example.memorybooster.R
 
-class ChoosingNoise : AppCompatActivity() {
+class ChoosingNoise : AppCompatActivity() {            //用来选择白噪音的Activity
     override fun onCreate(savedInstanceState: Bundle?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -21,7 +21,7 @@ class ChoosingNoise : AppCompatActivity() {
         supportActionBar?.hide()
         AllActivities.addActivity(this)
 findViewById<Button>(R.id.voice1).setOnClickListener {
-    al(this,1)
+    al(this,1)                                        //选中第一款白噪音，弹窗向用户确认
 }
         findViewById<Button>(R.id.voice2).setOnClickListener {
             al(this,2)

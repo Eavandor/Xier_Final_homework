@@ -45,8 +45,8 @@ class DisplarAWordCard : AppCompatActivity() {
         val edi=getSharedPreferences("data",0)
         var noise=edi.getInt("voice",1)
         var needNoise=edi.getBoolean("openNoise",false)
-        if (needNoise){
-            when(noise){
+        if (needNoise){                   //从上面SharedPreference里面拿到是否开启白噪音的
+            when(noise){                //用户选了第几首白噪音
                 1->{   mediaPlayer= MediaPlayer.create(this,R.raw.bnoise)
                     mediaPlayer.isLooping=true
                     mediaPlayer.start()}
@@ -71,8 +71,6 @@ class DisplarAWordCard : AppCompatActivity() {
         var index=0   //计数器
         var thisword=GetWordByInt.communicationWordCard.wordList[index]      //从词卡片的list里面拿出第1个包含单词数据的json
         conveyJsonMsg(thisword)                               //这个函数可以把这个json解析，并显示到UI上
-//        showAllJson(thisword)
-//        findViewById<TextView>(R.id.dkjhsa).text=GetWordByInt.communicationWordCard.wordList.get(index)
         findViewById<Button>(R.id.np).setOnClickListener {              //点击“下一个单词”，跳转到下一个
             index++
             if (index==page){                //单词卡片里面的最后一个单词结束了，跳转到主页面
@@ -85,7 +83,6 @@ class DisplarAWordCard : AppCompatActivity() {
                     .show();
             }else{
                 conveyJsonMsg(GetWordByInt.communicationWordCard.wordList[index])     //开始拿json里面的信息拿去解析，放进UI
-//                showAllJson(GetWordByInt.communicationWordCard.wordList[index])
             }
         }
 
@@ -154,7 +151,6 @@ fun showAllJson(jso:String){                    //测试函数，页面显示未
         if (jso.contains("\"usphone\":")){
             pronounce+="\n美式发音     /"+sy.getString("usphone")+"/"
         }
-//        pronounce+="英式发音     /"+sy.getString("ukphone")+"/\n美式发音     /"+sy.getString("usphone")+"/"
         findViewById<TextView>(R.id.yinbiao).text=pronounce
 
 

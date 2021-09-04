@@ -15,7 +15,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.thread
 
-class Try3 : AppCompatActivity() {
+class Try3 : AppCompatActivity() {       //这个类没有用，测试完Timer以后，我个笨比交作业前要记得删掉！
 
     val handler=object: Handler(){
         override fun handleMessage(msg: Message) {

@@ -29,23 +29,14 @@ class CardAdapter(val fruitList: List<WordCard2>) : RecyclerView.Adapter<CardAda
         viewHolder.itemView.setOnClickListener {
             val position = viewHolder.adapterPosition
             val fruit = fruitList[position]
-//            alertWindow(fruit.name,parent.context)
             GetWordByInt().getWordListByDigitList(WordActivity.rr5,fruit.wordList[0],fruit.wordCardID,fruit.time,fruit.points,0,fruit.book)
-//            Toast.makeText(parent.context, "you clicked view", Toast.LENGTH_SHORT).show()
-        }
+        }                  //点击传入对应参数，再由对应函数跳转到显示内容的卡片上去
 
         return viewHolder
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val fruit = fruitList[position]
         holder.wordcardtime.text = "创建时间："+fruit.time
-//
-//            var headWord= JSONObject(fruit.wordList.get(0)).getString("headWord")
-//        var pos1=JSONObject(fruit.wordList.get(0)).getJSONObject("content").getJSONObject("word")
-//            .getJSONObject("content").getJSONArray("trans").getJSONObject(0).getString("pos")
-//            var mean=JSONObject(fruit.wordList.get(0)).getJSONObject("content").getJSONObject("word")
-//                .getJSONObject("content").getJSONArray("trans").getJSONObject(0).getString("tranCn")
-//var disp=headWord+" "+pos1+" "+mean
         var str=fruit.wordList[0]
         var count=0
         var j=0
@@ -55,7 +46,7 @@ class CardAdapter(val fruitList: List<WordCard2>) : RecyclerView.Adapter<CardAda
             }
             j++
         }
-        count++
+        count++            //计算这个卡片有多少单词
                 holder.firstword.text ="本卡片共有"+count+"词"
 
         var i:Int=fruit.points.indexOfFirst { it=='0' }+1

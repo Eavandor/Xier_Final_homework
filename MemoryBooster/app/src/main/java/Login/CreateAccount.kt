@@ -20,7 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.http.Body
 
-class CreateAccount : AppCompatActivity() {
+class CreateAccount : AppCompatActivity() {   //创建账户，中规中矩，没啥好讲的就不写大量注释了呜呜呜呜呜呜
     var emailAddress=""
     var pwdfinal=""
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,13 +46,6 @@ var email=findViewById<EditText>(R.id.ed235).text.toString()
             var pwd1=findViewById<EditText>(R.id.ed236).text.toString()
             var pwd2=findViewById<EditText>(R.id.ed237).text.toString()
             var verification=findViewById<EditText>(R.id.ed556).text.toString()
-//            var cbox = findViewById<CheckBox>(R.id.cb111132)
-//            var keepLogin = false
-//            if (cbox.isChecked) {
-//                keepLogin = true
-//            } else {
-//                keepLogin = false
-//            }
             if (email==""||pwd1==""||pwd2==""||verification==""){
                 Toast.makeText(
                     getApplicationContext(),
@@ -81,7 +74,7 @@ var email=findViewById<EditText>(R.id.ed235).text.toString()
                     Toast.LENGTH_LONG
                 )
                     .show();
-            }else{//开始验证验证码，若成功就跳转
+            }else{                                             //开始验证验证码，若成功就跳转
                 Login2.p=pwd1
                 Login2.usn=email
 
@@ -92,14 +85,6 @@ var email=findViewById<EditText>(R.id.ed235).text.toString()
                 jso.put("password",pwd1.toInt())
                 jso.put("verifyCode",verification.toInt())
                 getRegister(jso.toString())
-//                var jsob=jso.toString()
-//                Toast.makeText(
-//                    getApplicationContext(),
-//                    ""+jsob,
-//                    Toast.LENGTH_SHORT
-//                ).show();
-//                var obj= RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsob);
-//                var body=obj as Body
             }
 
 
@@ -182,7 +167,7 @@ fun getRegister(jso:String){
     }
 
 
-    fun getVerification(email:String){
+    fun getVerification(email:String){       //发验证码的
         val retr = Login2.publicretrofit
         retr.create(VerificationService::class.java).sendVerificationMsg("" + email)
             .enqueue(object : Callback<ResponseBody> {

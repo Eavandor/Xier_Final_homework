@@ -19,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
         supportActionBar?.hide()
         AllActivities.addActivity(this)
     }
-    override fun onStart() {
+    override fun onStart() {           //开屏页
         super.onStart()
         Thread(Runnable {
             val start = System.currentTimeMillis()
@@ -27,7 +27,7 @@ class SplashActivity : AppCompatActivity() {
             //等待sleeptime时长
             if (2000 - costTime > 0) {
                 try {
-                    Thread.sleep(2000 - costTime)
+                    Thread.sleep(2000 - costTime)          //显示图片两分钟
                 } catch (e: InterruptedException) {
                     e.printStackTrace()
                 }

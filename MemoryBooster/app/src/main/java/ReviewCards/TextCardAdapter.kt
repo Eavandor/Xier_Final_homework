@@ -30,9 +30,8 @@ class TextCardAdapter(val fruitList: List<Card>) : RecyclerView.Adapter<TextCard
         viewHolder.itemView.setOnClickListener {
             val position = viewHolder.adapterPosition
             val fruit = fruitList[position]
-//            alertWindow(fruit.name,parent.context)
-//            Toast.makeText(parent.context, "you clicked view", Toast.LENGTH_SHORT).show()
-            val intent9=Intent(parent.context,ShowTextCard::class.java)
+
+            val intent9=Intent(parent.context,ShowTextCard::class.java)    //点击就跳转到显示卡片的Activity去
             intent9.putExtra("name",fruit.name)
             intent9.putExtra("id",fruit.id)
             intent9.putExtra("content",fruit.content)
@@ -46,13 +45,6 @@ class TextCardAdapter(val fruitList: List<Card>) : RecyclerView.Adapter<TextCard
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val fruit = fruitList[position]
         holder.wordcardtime.text = fruit.name
-
-//        var headWord= JSONObject(fruit.wordList.get(0)).getString("headWord")
-//        var pos1=JSONObject(fruit.wordList.get(0)).getJSONObject("content").getJSONObject("word")
-//            .getJSONObject("content").getJSONArray("trans").getJSONObject(0).getString("pos")
-//        var mean=JSONObject(fruit.wordList.get(0)).getJSONObject("content").getJSONObject("word")
-//            .getJSONObject("content").getJSONArray("trans").getJSONObject(0).getString("tranCn")
-//        var disp=headWord+" "+pos1+" "+mean
         holder.firstword.text ="点我开始复习 ♪(^∇^*)"
 holder.afds.text=""
         var i:Int=fruit.points.indexOfFirst { it=='0' }+1

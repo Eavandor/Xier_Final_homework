@@ -24,11 +24,11 @@ class ChooseImg : AppCompatActivity() {
         AllActivities.addActivity(this)
         findViewById<ImageView>(R.id.img1).setOnClickListener {
 
-            al(this,1)
+            al(this,1)                   //选择图片，选中第一张，就弹窗向用户确认
         }
         findViewById<ImageView>(R.id.img2).setOnClickListener {
 
-            al(this,2)
+            al(this,2)               //以此类推
         }
         findViewById<ImageView>(R.id.img3).setOnClickListener {
 
@@ -42,7 +42,7 @@ fun al(conte:Context,index: Int){
         setMessage("您当前选中的是第"+index+"张")
         setCancelable(false)
         setPositiveButton("好哒！") { dialog, which ->
-val editor=conte.getSharedPreferences("data",0).edit()
+val editor=conte.getSharedPreferences("data",0).edit()            //用户确认，就用SharedPreference来存储当前图片是第几张
             editor.putInt("pic",index)
             editor.apply()
             conte.startActivity(Intent(conte,Me::class.java))

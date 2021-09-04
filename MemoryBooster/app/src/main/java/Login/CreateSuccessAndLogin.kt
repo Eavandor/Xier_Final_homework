@@ -41,11 +41,6 @@ class CreateSuccessAndLogin {
                             Toast.LENGTH_LONG
                         ).show();
                     }else{
-//                        Toast.makeText(
-//                            getApplicationContext(),
-//                            "token:"+ token+"\n"+hea.toString(),
-//                            Toast.LENGTH_LONG
-//                        ).show();
                         if (feedback != null) {
                             if (feedback.contains("操作成功")){
                                 val editor=context.getSharedPreferences("data", Context.MODE_PRIVATE).edit()
@@ -54,11 +49,6 @@ class CreateSuccessAndLogin {
                                 editor.apply()
                                 var intent = Intent(context, WordActivity::class.java)
                                 context.startActivity(intent)
-
-
-
-//                            var intent = Intent(getApplicationContext(), TryWordBack::class.java)
-//                            startActivity(intent)
                             }else{
                                 Toast.makeText(
                                     context,

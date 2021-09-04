@@ -74,10 +74,6 @@ class TryWordBack : AppCompatActivity() {
                                 i++
                             }
                             i=0
-
-
-
-
                             while (i<jsoarray.length()){
                                 var obj=jsoarray.get(i) as JSONObject
                                 var type=obj.getString("type")
@@ -114,8 +110,6 @@ class TryWordBack : AppCompatActivity() {
                                         arr+=jso.getInt(z)
                                         if (z==jso.length()-1)break
                                         arr+=","
-
-
                                         z++
                                     }
                                 }
@@ -145,7 +139,7 @@ class TryWordBack : AppCompatActivity() {
                         }else{
                             Toast.makeText(
                                 getApplicationContext(),
-                                "登陆失败",
+                                "信息获取失败",
                                 Toast.LENGTH_LONG
                             ).show();
                         }
